@@ -1,0 +1,36 @@
+<html>
+  <body>
+    <h1>Sophie Germain Prime Calculator</h1>
+    <input type="number" id="n" placeholder="Enter a number">
+    <button onclick="calculate()">Calculate</button>
+    <p id="result"></p>
+
+    <script>
+      function calculate() {
+        const n = parseInt(document.getElementById("n").value);
+        const isSophieGermainPrime = isSGPrime(n);
+        document.getElementById("result").innerHTML = `${n} is ${isSophieGermainPrime ? "" : "not "}a Sophie Germain prime.`;
+      }
+
+      function isSGPrime(n) {
+        if (!isPrime(n)) {
+          return false;
+        }
+        const p = 2 * n + 1;
+        return isPrime(p);
+      }
+
+      function isPrime(n) {
+        if (n <= 1) {
+          return false;
+        }
+        for (let i = 2; i <= Math.sqrt(n); i++) {
+          if (n % i === 0) {
+            return false;
+          }
+        }
+        return true;
+      }
+    </script>
+  </body>
+</html>
